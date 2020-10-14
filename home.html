@@ -21,7 +21,7 @@ if (response.authResponse)
 {
 
 //Logged in and accepted permissions!
-$("#status").innerHTML = "Logged in successfully !!!";    
+document.getElementById("status").innerHTML = "Logged in successfully !!!";    
 var albums = $("#albums"); 
     
 FB.api(
@@ -55,7 +55,7 @@ function getPhotos(val) {
            console.log(response);
                for(i=0;i<response.data.length;i++)
                {
-                   $("#galleryInner").innerHTML = "<img src='" + response.data[i].images[3].source + "' class='img-rounded' width='304' height='236'>";
+                   document.getElementById("galleryInner").innerHTML = "<img src='" + response.data[i].images[3].source + "' class='img-rounded' width='304' height='236'>";
                }
           }
         }
