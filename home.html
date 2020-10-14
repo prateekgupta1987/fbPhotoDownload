@@ -52,6 +52,7 @@ function getPhotos(val) {
         function (response) {
           if (response && !response.error) {
            console.log(response);
+              $("#galleryInner").html("");
                for(i=0;i<response.data.length;i++)
                {
                    var img = document.createElement("img");
