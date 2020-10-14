@@ -62,8 +62,8 @@ function getPhotos(val) {
                    img.height=236;
                    document.getElementById("galleryInner").appendChild(img);
                }
-               $("#prev").html(response.paging.previous);
-               $("#next").html(response.paging.next);
+               $("#prev").attr("href", (response.paging.previous);
+               $("#next").attr("href", (response.paging.next);
           }
         }
     );
