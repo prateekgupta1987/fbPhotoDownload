@@ -55,8 +55,10 @@ function getPhotos(val) {
            console.log(response);
                for(i=0;i<response.data.length;i++)
                {
+                   console.log(response.data.length);
                    var img = document.createElement("img");
                    img.src = response.data[i].images[3].source;  
+                   console.log(response.data[i].images[3].source);
                    img.class='img-rounded';
                    img.width=304;
                    img.height=236;
