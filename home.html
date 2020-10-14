@@ -43,14 +43,20 @@ FB.api(
 }
 });
 
-function getPhotos() {
+function getPhotos(navid) {
     var e = document.getElementById("albums");
     var val = e.options[e.selectedIndex].value;
     if(val!="0")
     {
        $("#gallery").show();
-       FB.api(
-        "/"+val+"/photos?fields=images",
+        var url='';
+        if(navid=='prev')
+            url = "/"+val+"/photos?pretty=0&fields=images&limit=25&before="+previd;
+        else if(navid=='next')
+            url = "/"+val+"/photos?pretty=0&fields=images&limit=25&after="+nextid;
+        else
+         url = "/"+val+"/photos?fields=images";
+       FB.api(url,
         function (response) {
           if (response && !response.error) {
            console.log(response);
@@ -64,8 +70,8 @@ function getPhotos() {
                    img.height=236;
                    document.getElementById("galleryInner").appendChild(img);
                }
-               $("#prev").attr("href",response.paging.previous);
-               $("#next").attr("href",response.paging.next);
+              var previd = response.paging.previous;
+              var nextid = response.paging.next;
           }
         }
     );
@@ -82,14 +88,14 @@ function getPhotos() {
 <div class="form-group">
 <div id='status'></div>
 <br />
-<select class="form-control" id="albums" onchange="getPhotos()">
+<select class="form-control" id="albums" onchange="getPhotos('')">
     <option value="0">--Albums--</option>
 </select>
     <br />
     
 <div class="container" id="gallery" style="display:none;">
   <h4>Photos</h4> 
-    <a href="#" id="prev">Previous</a> &nbsp;  <a href="#" id="next">Next</a>
+    <a href="#" id="prev" onclick=getPhotos(this.id)>Previous</a> &nbsp;  <a href="#" id="next" onclick=getPhotos(this.id)>Next</a>
     <div id="galleryInner">
     </div>
 </div>
