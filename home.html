@@ -50,9 +50,9 @@ function getPhotos(navid) {
     {
        $("#gallery").show();
         var url='';
-        if(navid=='prev')
+        if(navid=='prev' && localStorage.getItem("previd") !=undefined)
             url = "/"+val+"/photos?pretty=0&fields=images&limit=25&before="+localStorage.getItem("previd");
-        else if(navid=='next')
+        else if(navid=='next'  && localStorage.getItem("nextid") !=undefined)
             url = "/"+val+"/photos?pretty=0&fields=images&limit=25&after="+localStorage.getItem("nextid");
         else
          url = "/"+val+"/photos?fields=images";
