@@ -37,17 +37,24 @@ FB.api(
       }
     }
 );
-    FB.api(
-    "/10216835256378169/photos?fields=images",
-    function (response) {
-      if (response && !response.error) {
-       console.log(response);
-      }
-    }
-);
+  
 }
 });
 
+function getPhotos(val) {
+    console.log(val);
+    if(val!="0")
+    {
+       FB.api(
+        "/"+val+"/photos?fields=images",
+        function (response) {
+          if (response && !response.error) {
+           console.log(response);
+          }
+        }
+    );
+    }
+}
 
 </script>    
 </head>
@@ -55,8 +62,8 @@ FB.api(
 <div class="form-group">
 <div id='status'></div>
 <br />
-<select class="form-control" id="albums">
-    <option>--Albums--</option>
+<select class="form-control" id="albums" onchange="getPhotos(this.value)">
+    <option value="0">--Albums--</option>
 </select>
 </div>
 </body>  
