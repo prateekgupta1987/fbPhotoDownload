@@ -1,0 +1,63 @@
+<html>
+<head>
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script type="text/javascript">
+
+
+FB.init({
+appId  : '713469575910847',
+status : true, // check login status
+cookie : true, // enable cookies to allow the server to access the session
+xfbml  : true  // parse XFBML
+});
+
+FB.login(function(response)
+{
+if (response.authResponse)
+{
+
+//Logged in and accepted permissions!
+document.getElementById('status').innerHTML = "Logged in successfully !!!";    
+var albums = document.getElementById("albums"); 
+    
+FB.api(
+    "/"+response.authResponse.userID+"/albums",
+    function (response) {
+      if (response && !response.error) {
+       for(i=0;i<response.data.length;i++)
+       {
+       		var opt = response.data[i];
+    		var el = document.createElement("option");
+    		el.text = opt.name;
+    		el.value = opt.id;
+    		albums.add(el);
+       }
+      }
+    }
+);
+    FB.api(
+    "/10216835256378169/photos?fields=images",
+    function (response) {
+      if (response && !response.error) {
+       console.log(response);
+      }
+    }
+);
+}
+});
+
+
+</script>    
+</head>
+<body>
+<div class="form-group">
+<div id='status'></div>
+<br />
+<select class="form-control" id="albums">
+    <option>--Albums--</option>
+</select>
+</div>
+</body>  
+</html>
