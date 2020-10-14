@@ -2,6 +2,8 @@
 <head>
 <script src="https://connect.facebook.net/en_US/all.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 
@@ -45,6 +47,7 @@ function getPhotos(val) {
     console.log(val);
     if(val!="0")
     {
+       $("#gallery").show();
        FB.api(
         "/"+val+"/photos?fields=images",
         function (response) {
@@ -53,6 +56,10 @@ function getPhotos(val) {
           }
         }
     );
+    }
+    else
+    {
+        $("#gallery").hide();
     }
 }
 
@@ -65,6 +72,14 @@ function getPhotos(val) {
 <select class="form-control" id="albums" onchange="getPhotos(this.value)">
     <option value="0">--Albums--</option>
 </select>
+    <br />
+    
+<div class="container" id="gallery" style="display:none;">
+  <h4>Photos</h4> 
+    <div id="galleryInner">
+  <img src="cinqueterre.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236"> 
+    </div>
+</div>
 </div>
 </body>  
 </html>
