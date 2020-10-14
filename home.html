@@ -22,7 +22,7 @@ if (response.authResponse)
 
 //Logged in and accepted permissions!
 document.getElementById("status").innerHTML = "Logged in successfully !!!";    
-var albums = $("#albums"); 
+var albums = document.getElementById("albums"); 
     
 FB.api(
     "/"+response.authResponse.userID+"/albums",
