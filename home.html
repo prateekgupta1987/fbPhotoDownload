@@ -51,9 +51,9 @@ function getPhotos(navid) {
        $("#gallery").show();
         var url='';
         if(navid=='prev')
-            url = "/"+val+"/photos?pretty=0&fields=images&limit=25&before="+previd;
+            url = "/"+val+"/photos?pretty=0&fields=images&limit=25&before="+localStorage.getItem("previd");
         else if(navid=='next')
-            url = "/"+val+"/photos?pretty=0&fields=images&limit=25&after="+nextid;
+            url = "/"+val+"/photos?pretty=0&fields=images&limit=25&after="+localStorage.getItem("nextid");
         else
          url = "/"+val+"/photos?fields=images";
        FB.api(url,
@@ -70,8 +70,8 @@ function getPhotos(navid) {
                    img.height=236;
                    document.getElementById("galleryInner").appendChild(img);
                }
-              var previd = response.paging.previous;
-              var nextid = response.paging.next;
+              localStorage.setItem("previd", response.paging.previous);
+              localStorage.setItem("nextid", response.paging.next);
           }
         }
     );
