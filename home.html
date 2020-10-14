@@ -56,7 +56,10 @@ function getPhotos(val) {
                for(i=0;i<response.data.length;i++)
                {
                    var img = document.createElement("img");
-                   img.src = response.data[i].images[3].source;                    
+                   img.src = response.data[i].images[3].source;  
+                   img.class='img-rounded';
+                   img.width=304;
+                   img.height=236;
                    document.getElementById("galleryInner").appendChild(img);
                }
           }
