@@ -55,7 +55,7 @@ function getPhotos(val) {
            console.log(response);
                for(i=0;i<response.data.length;i++)
                {
-                   document.getElementById("galleryInner").appendChild("<img src='" + response.data[i].images[3].source + "' class='img-rounded' width='304' height='236'>");
+                   document.querySelector("galleryInner").appendChild("<img src='" + response.data[i].images[3].source + "' class='img-rounded' width='304' height='236'>");
                }
           }
         }
