@@ -43,7 +43,9 @@ FB.api(
 }
 });
 
-function getPhotos(val) {
+function getPhotos() {
+    var e = document.getElementById("albums");
+    var val = e.options[e.selectedIndex].value;
     if(val!="0")
     {
        $("#gallery").show();
@@ -80,7 +82,7 @@ function getPhotos(val) {
 <div class="form-group">
 <div id='status'></div>
 <br />
-<select class="form-control" id="albums" onchange="getPhotos(this.value)">
+<select class="form-control" id="albums" onchange="getPhotos()">
     <option value="0">--Albums--</option>
 </select>
     <br />
