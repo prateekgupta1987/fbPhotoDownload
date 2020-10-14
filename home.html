@@ -21,8 +21,8 @@ if (response.authResponse)
 {
 
 //Logged in and accepted permissions!
-document.getElementById('status').innerHTML = "Logged in successfully !!!";    
-var albums = document.getElementById("albums"); 
+$("#status").innerHTML = "Logged in successfully !!!";    
+var albums = $("#albums"); 
     
 FB.api(
     "/"+response.authResponse.userID+"/albums",
@@ -53,6 +53,10 @@ function getPhotos(val) {
         function (response) {
           if (response && !response.error) {
            console.log(response);
+               for(i=0;i<response.data.length;i++)
+               {
+                   $("#galleryInner").innerHTML = "<img src='" + response.data[i].images[3].source + "' class='img-rounded' width='304' height='236'>";
+               }
           }
         }
     );
@@ -77,7 +81,7 @@ function getPhotos(val) {
 <div class="container" id="gallery" style="display:none;">
   <h4>Photos</h4> 
     <div id="galleryInner">
-  <img src="cinqueterre.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236"> 
+ 
     </div>
 </div>
 </div>
