@@ -55,7 +55,7 @@ function getPhotos(navid) {
         else if(navid=='next'  && localStorage.getItem("nextid") !='undefined')
             url = "/"+val+"/photos?pretty=0&fields=images&limit=25&after="+localStorage.getItem("nextid");
         else
-         url = "/"+val+"/photos?fields=images";
+         url = "/"+val+"/photos?fields=images&limit=10000";
        FB.api(url,
         function (response) {
           if (response && !response.error) {
@@ -64,7 +64,7 @@ function getPhotos(navid) {
                for(i=0;i<response.data.length;i++)
                {
                    var img = document.createElement("img");
-                   img.src = response.data[i].images[1].source;
+                   img.src = response.data[i].images[0].source;
                    img.class='img-rounded';
                    img.width=304;
                    img.height=236;
